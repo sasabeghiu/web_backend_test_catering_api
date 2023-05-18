@@ -7,7 +7,8 @@ use PDO;
 use PDOException;
 use PDOStatement;
 
-class Db implements IDb {
+class Db implements IDb
+{
     /** @var PDO|null */
     private $connection = null;
     /** @var PDOStatement */
@@ -17,28 +18,32 @@ class Db implements IDb {
      * Constructor of this class
      * @param IConnection $connectionImplementation
      */
-    public function __construct(IConnection $connectionImplementation) {
+    public function __construct(IConnection $connectionImplementation)
+    {
         $this->connection = $this->connect($connectionImplementation);
     }
 
     /**
      * Function to start a transaction
      */
-    public function beginTransaction() {
+    public function beginTransaction()
+    {
         return $this->connection->beginTransaction();
     }
 
     /**
      * Function to roll back the transaction
      */
-    public function rollBack() {
+    public function rollBack()
+    {
         return $this->connection->rollBack();
     }
 
     /**
      * Function to commit a transaction
      */
-    public function commit() {
+    public function commit()
+    {
         return $this->connection->commit();
     }
 
@@ -47,12 +52,30 @@ class Db implements IDb {
      * @param array $bind
      * @return bool
      */
-    public function executeQuery(string $query, array $bind = []): bool {
+    public function executeQuery(string $query, array $bind = []): bool
+    {
         $this->stmt = $this->connection->prepare($query);
         if ($bind) {
             return $this->stmt->execute($bind);
         }
         return $this->stmt->execute();
+    }
+    
+    //execute query returning the array instead of a bool
+    /**
+     * @param string $query
+     * @param array $bind
+     * @return array
+     */
+    public function executeQuery2(string $query, array $bind = []): array
+    {
+        $this->stmt = $this->connection->prepare($query);
+        if ($bind) {
+            $this->stmt->execute($bind);
+        } else {
+            $this->stmt->execute();
+        }
+        return $this->stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     /**
@@ -60,7 +83,8 @@ class Db implements IDb {
      * @param mixed $name
      * @return int
      */
-    public function getLastInsertedId($name = null): int {
+    public function getLastInsertedId($name = null): int
+    {
         $id = $this->connection->lastInsertId($name);
         return ($id ?: false);
     }
@@ -69,7 +93,8 @@ class Db implements IDb {
      * Function to get the connection
      * @return null|PDO
      */
-    public function getConnection(): ?PDO {
+    public function getConnection(): ?PDO
+    {
         return $this->connection;
     }
 
@@ -78,7 +103,8 @@ class Db implements IDb {
      * @return PDO
      * @throws PDOException
      */
-    private function connect(IConnection $connectionImplementation) {
+    private function connect(IConnection $connectionImplementation)
+    {
         try {
             return new PDO(
                 $connectionImplementation->getDsn(),
@@ -95,7 +121,8 @@ class Db implements IDb {
      * Function to return the last executed statement if any
      * @return null|PDOStatement
      */
-    public function getStatement(): ?PDOStatement {
+    public function getStatement(): ?PDOStatement
+    {
         return $this->stmt;
     }
 }
