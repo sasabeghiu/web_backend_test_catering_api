@@ -5,5 +5,8 @@
 // Define routes here
 $router->get('/', App\Controllers\IndexController::class . '@test');
 
-$router->get('/facilities', App\Controllers\FacilityController::class . '@facilities');
-$router->get('/facilities/{id}', App\Controllers\FacilityController::class . '@getOne');
+$router->post('/facilities', App\Controllers\FacilityController::class . '@createOne');
+$router->get('/facilities/{id}', App\Controllers\FacilityController::class . '@readOne');
+$router->get('/facilities', App\Controllers\FacilityController::class . '@readAll');
+$router->put('/facilities/{id}', App\Controllers\FacilityController::class . '@updateOne');
+$router->delete('/facilities/{id}', App\Controllers\FacilityController::class . '@deleteOne');
