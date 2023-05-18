@@ -5,3 +5,6 @@
 // Define routes here
 $router->get('/test', App\Controllers\IndexController::class . '@test');
 $router->get('/', App\Controllers\IndexController::class . '@test');
+
+$router->get('/facilities', App\Controllers\FacilityController::class . '@facilities');
+$router->get('/facilities/{id}', App\Controllers\FacilityController::class . '@getOne');

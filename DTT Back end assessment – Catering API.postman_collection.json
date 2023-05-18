@@ -42,6 +42,25 @@
 				"description": "Creates a facility..."
 			},
 			"response": []
+		},
+		{
+			"name": "Get one facility by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/facilities/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"facilities",
+						"1"
+					]
+				},
+				"description": "Use /facilities/{id} to get a specific facility."
+			},
+			"response": []
 		}
 	],
 	"event": [

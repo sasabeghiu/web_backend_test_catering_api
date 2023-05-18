@@ -4,6 +4,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+// header("Content-type: application/json; charset=UTF-8");
+
 // Autoloader
 require_once '../vendor/autoload.php';
 
