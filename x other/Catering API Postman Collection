@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "1f272185-3c34-49b8-a12d-7d042d60bf6b",
+		"name": "DTT Back end assessment – Catering API",
+		"description": "# Catering API\n\n## Start by using /facilities\n\nThe Postman collection for the DTT backend assessment test: Catering API.\n\n## Error handling\n\nErrors are returned using standard HTTP error code syntax. In general, codes in the `2xx` range indicate success, codes in the `4xx` range indicate an error, and codes in the `5xx` range indicate an error with the servers.\n\n### HTTP status codes\n\n- `200` – **Ok**. Successful operation.\n- `201` – **Created**. Object succesfully created.\n- `400` – **The request was incorrect.**\n- `404` – **Not Found**. Object not found.\n- `500` – **Internal Server Error**. Something unexpected happened.\n    \n\n## Data format\n\nThe Catering API returns data in raw `JSON` format . See example:\n\n``` json\n{\n    \"Facility\": [\n        {\n            \"id\": 87,\n            \"name\": \"Schoool Facility\",\n            \"created_at\": \"2023-05-20 16:20:00\",\n            \"city\": \"Amsterdam\",\n            \"address\": \"Museumplein\",\n            \"zip_code\": \"1045 XX\",\n            \"country_code\": \"NL\",\n            \"phone_number\": \"0664762156\",\n            \"tag_name\": \"TEST,AMS,SCHOOL\"\n        }\n    ]\n}\n\n```",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27453808"
+	},
+	"item": [
+		{
+			"name": "GET requests",
+			"item": [
+				{
+					"name": "/facilities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/facilities",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities"
+							]
+						},
+						"description": "Returns a list of all available facilities."
+					},
+					"response": []
+				},
+				{
+					"name": "facilities/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/87",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"87"
+							]
+						},
+						"description": "Returns a facility based on its ID."
+					},
+					"response": []
+				},
+				{
+					"name": "/facilities/search/{query}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/facilities/search/test",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"search",
+								"test"
+							]
+						},
+						"description": "Returns a list of all available facilities based on the search query.\n\nThe search query can be:\n\n1. A facility `name`\n2. A tag `name`\n3. A location `city`"
+					},
+					"response": []
+				},
+				{
+					"name": "/facilities?{limit}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/facilities?limit=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Returns a list of first ten facilities.\n\nUsing the query parameter `?limit=10` for pagination."
+					},
+					"response": []
+				}
+			],
+			"description": "All the GET requests are under this directory"
+		},
+		{
+			"name": "POST requests",
+			"item": [
+				{
+					"name": "/facility",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Postman Facility\",\r\n  \"created_at\": \"2023-05-20 12:20:00\",\r\n  \"location\": {\r\n    \"city\": \"Amsterdam\",\r\n    \"address\": \"Museumplein\",\r\n    \"zip_code\": \"1045 XX\",\r\n    \"country_code\": \"NL\",\r\n    \"phone_number\": \"0664762156\"\r\n  },\r\n  \"tags\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/facility",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facility"
+							]
+						},
+						"description": "Allows you to insert a new facility.\n\nIf the location provided doesn't exist, it will be added to database, otherwise the existing one will be used.\n\nThe request body needs to be in JSON format and include the following properties:\n\n- `name` - string - Required\n- `created_at` - timestamp - Required\n- `location` - object - Required\n- `tags` - object"
+					},
+					"response": []
+				}
+			],
+			"description": "All the POST requests are under this directory"
+		},
+		{
+			"name": "PUT requests",
+			"item": [
+				{
+					"name": "/facility/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Schoool Facility\",\r\n  \"created_at\": \"2023-05-20 16:20:00\",\r\n  \"location\": {\r\n    \"city\": \"Amsterdam\",\r\n    \"address\": \"Museumplein\",\r\n    \"zip_code\": \"1045 XX\",\r\n    \"country_code\": \"NL\",\r\n    \"phone_number\": \"0664762156\"\r\n  },\r\n  \"tags\": [\"AMS\", \"SCHOOL\", \"TEST\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/facility/87",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facility",
+								"87"
+							]
+						},
+						"description": "Allows you to update a facility based on its ID.\n\nIf the location provided doesn't exist, it will be added to database, otherwise the existing one will be used.\n\nThe request body needs to be in JSON format and include the following properties:\n\n- `name` - string - Required\n- `created_at` - timestamp - Required\n- `location` - object - Required\n- `tags` - object"
+					},
+					"response": []
+				}
+			],
+			"description": "All the PUT requests are under this directory"
+		},
+		{
+			"name": "DELETE requests",
+			"item": [
+				{
+					"name": "/facility/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/facility/90",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facility",
+								"90"
+							]
+						},
+						"description": "Allows you to delete a facility based on its ID.\n\nThe request body needs to be empty.\n\nReturns true if operation was successful."
+					},
+					"response": []
+				}
+			],
+			"description": "All the DELETE requests are under this directory"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost/web_backend_test_catering_api",
+			"type": "string"
+		}
+	]
+}

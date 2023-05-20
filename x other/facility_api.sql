@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2023 at 05:35 PM
+-- Generation Time: May 20, 2023 at 08:38 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -41,11 +41,10 @@ CREATE TABLE `facilities` (
 INSERT INTO `facilities` (`id`, `name`, `created_at`, `location_id`) VALUES
 (82, 'School Facility', '2023-05-20 14:20:00', 37),
 (83, 'Work Facility', '2023-05-20 14:20:00', 36),
-(84, 'Work Facility', '2023-05-20 14:20:00', 37),
-(85, 'School Facility', '2023-05-20 14:20:00', 37),
-(86, 'School Facility', '2023-05-20 14:20:00', 38),
-(87, 'Test Facility', '2023-05-20 14:20:00', 38),
-(88, 'School Facility', '2023-05-20 14:20:00', 38);
+(84, 'Hospital Facility', '2023-05-20 14:20:00', 37),
+(85, 'Test Facility', '2023-05-20 14:20:00', 37),
+(87, 'Police Facility', '2023-05-20 14:20:00', 38),
+(89, 'Just Facility', '2023-05-20 14:20:00', 36);
 
 -- --------------------------------------------------------
 
@@ -70,7 +69,11 @@ INSERT INTO `facility_tags` (`facility_id`, `tag_id`) VALUES
 (84, 14),
 (84, 15),
 (85, 14),
-(85, 16);
+(85, 16),
+(87, 13),
+(87, 14),
+(87, 16),
+(89, 15);
 
 -- --------------------------------------------------------
 
@@ -159,7 +162,7 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT for table `facilities`
 --
 ALTER TABLE `facilities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `locations`

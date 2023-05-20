@@ -13,7 +13,7 @@ class FacilityController extends BaseController
      * Create a new facility.
      *
      * HTTP Method: POST
-     * URL: /facilities
+     * URL: /facility
      *
      * @return object
      */
@@ -97,7 +97,7 @@ class FacilityController extends BaseController
                     GROUP BY f.id, f.name, f.created_at, l.city, l.address, l.zip_code, l.country_code, l.phone_number";
 
         $page = $_GET['page'] ?? 1;
-        $perPage = $_GET['per_page'] ?? 5;
+        $perPage = $_GET['per_page'] ?? 10;
         $offset = ($page - 1) * $perPage;
         $sql .= " LIMIT $offset, $perPage";
 
@@ -114,7 +114,7 @@ class FacilityController extends BaseController
      * Update a facility by ID.
      *
      * HTTP Method: PUT
-     * URL: /facilities/{id}
+     * URL: /facility/{id}
      *
      * @param int $id
      * @return object
@@ -151,7 +151,7 @@ class FacilityController extends BaseController
      * Delete a facility by ID.
      *
      * HTTP Method: DELETE
-     * URL: /facilities/{id}
+     * URL: /facility/{id}
      *
      * @param int $id
      * @return object

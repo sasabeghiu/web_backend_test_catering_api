@@ -6,8 +6,8 @@
 $router->get('/', App\Controllers\IndexController::class . '@test');
 
 $router->get('/facilities/search/{searchQuery}', App\Controllers\FacilityController::class . '@search');
-$router->post('/facilities', App\Controllers\FacilityController::class . '@createOne');
+$router->post('/facility', App\Controllers\FacilityController::class . '@createOne');
 $router->get('/facilities/{id}', App\Controllers\FacilityController::class . '@readOne');
 $router->get('/facilities', App\Controllers\FacilityController::class . '@readAll');
-$router->put('/facilities/{id}', App\Controllers\FacilityController::class . '@updateOne');
-$router->delete('/facilities/{id}', App\Controllers\FacilityController::class . '@deleteOne');
+$router->put('/facility/{id}', App\Controllers\FacilityController::class . '@updateOne');
+$router->delete('/facility/{id}', App\Controllers\FacilityController::class . '@deleteOne');
