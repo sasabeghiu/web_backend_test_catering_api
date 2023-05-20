@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Plugins\Http\Response as Status;
 use App\Plugins\Http\Exceptions;
+use Exception;
 
 #[\AllowDynamicProperties]
 class FacilityController extends BaseController
@@ -20,15 +21,20 @@ class FacilityController extends BaseController
     {
         $data = $this->getRequestData();
 
-        $sql = "INSERT INTO facilities (name, created_at, tag_id, location_id) VALUES (?, ?, ?, ?)";
-        $result = $this->db->executeQuery($sql, [
+        $sql = "INSERT INTO facilities (name, created_at, location_id) VALUES (?, ?, ?)";
+        $params = [
             $data->name ?? null,
             $data->created_at ?? null,
-            $data->tag_id ?? null,
             $data->location_id ?? null
-        ]);
+        ];
 
-        $status = new Status\Ok(['Object created successfully' => $result]);
+        $result = $this->db->executeQuery($sql, $params);
+
+        if ($result === 0) {
+            throw new Exceptions\InternalServerError('Failed to create facility.');
+        }
+
+        $status = new Status\Created(['Object created successfully' => $result]);
         $status->send();
 
         return $status;
@@ -45,19 +51,21 @@ class FacilityController extends BaseController
      */
     public function readOne(int $id): object
     {
-        $sql = "SELECT f.id, f.name, f.created_at, l.city, l.address, l.zip_code, l.country_code, l.phone_number, t.name AS tag_name
+        $sql = "SELECT f.id, f.name, f.created_at, l.city, l.address, l.zip_code, l.country_code, l.phone_number, GROUP_CONCAT(t.name) AS tag_name
                     FROM facilities AS f
                     JOIN locations AS l ON f.location_id = l.id
-                    LEFT JOIN tags AS t ON f.tag_id = t.id
-                    WHERE f.id = ?";
+                    LEFT JOIN facility_tags as ft ON f.id = ft.facility_id
+                    LEFT JOIN tags AS t ON ft.tag_id = t.id
+                    WHERE f.id = ?
+                    GROUP BY f.id, f.name, f.created_at, l.city, l.address, l.zip_code, l.country_code, l.phone_number";
 
         $result = $this->db->executeQuery2($sql, [$id]);
 
         if (empty($result)) {
-            throw new Exceptions\NotFound('Facility not found');
+            throw new Exceptions\NotFound('Facility not found.');
         }
 
-        $status = new Status\Ok(['Object' => $result]);
+        $status = new Status\Ok(['Facility' => $result]);
         $status->send();
 
         return $status;
@@ -76,10 +84,12 @@ class FacilityController extends BaseController
         $response = [];
         $bind = [];
 
-        $sql = "SELECT f.id, f.name, f.created_at, l.city, l.address, l.zip_code, l.country_code, l.phone_number, t.name AS tag_name
+        $sql = "SELECT f.id, f.name, f.created_at, l.city, l.address, l.zip_code, l.country_code, l.phone_number, GROUP_CONCAT(t.name) AS tag_name
                     FROM facilities AS f
                     JOIN locations AS l ON f.location_id = l.id
-                    LEFT JOIN tags AS t ON f.tag_id = t.id";
+                    LEFT JOIN facility_tags as ft ON f.id = ft.facility_id
+                    LEFT JOIN tags AS t ON ft.tag_id = t.id
+                    GROUP BY f.id, f.name, f.created_at, l.city, l.address, l.zip_code, l.country_code, l.phone_number";
 
         $page = $_GET['page'] ?? 1;
         $perPage = $_GET['per_page'] ?? 5;
@@ -87,7 +97,7 @@ class FacilityController extends BaseController
         $sql .= " LIMIT $offset, $perPage";
 
         $result = $this->db->executeQuery2($sql, $bind);
-        $response["data"] =  $result;
+        $response["Facilities"] =  $result;
 
         $status = new Status\Ok($response);
         $status->send();
@@ -108,20 +118,20 @@ class FacilityController extends BaseController
     {
         $data = $this->getRequestData();
 
-        $sql = "UPDATE facilities SET name = ?, created_at = ?, tag_id = ?, location_id = ? WHERE id = ?";
-        $result = $this->db->executeQuery($sql, [
+        $sql = "UPDATE facilities SET name = ?, created_at = ?, location_id = ? WHERE id = ?";
+        $params = [
             $data->name ?? null,
             $data->created_at ?? null,
-            $data->tag_id ?? null,
             $data->location_id ?? null,
             $id
-        ]);
+        ];
+        $result = $this->db->executeQuery($sql, $params);
 
         if ($result === 0) {
-            throw new Exceptions\NotFound('Facility not found');
+            throw new Exceptions\NotFound('Facility not found.');
         }
 
-        $status = new Status\Ok(['Object updated successfully' => $result]);
+        $status = new Status\Ok(['Facility updated successfully' => $result]);
         $status->send();
 
         return $status;
@@ -142,10 +152,10 @@ class FacilityController extends BaseController
         $result = $this->db->executeQuery($sql, [$id]);
 
         if ($result === 0) {
-            throw new Exceptions\NotFound('Facility not found');
+            throw new Exceptions\NotFound('Facility not found.');
         }
 
-        $status = new Status\Ok(['Object deleted successfully' => $result]);
+        $status = new Status\Ok(['Facility deleted successfully' => $result]);
         $status->send();
 
         return $status;
@@ -169,6 +179,7 @@ class FacilityController extends BaseController
         } elseif ($contentType === 'multipart/form-data') {
             $requestData = (object)($_POST + $_FILES);
         }
+
         $sanitizedData = $this->sanitize($requestData);
 
         return $sanitizedData;
@@ -191,5 +202,41 @@ class FacilityController extends BaseController
         }
 
         return $value;
+    }
+
+    /**
+     * Search facilities by facility name, tag name, or location city.
+     *
+     * HTTP Method: GET
+     * URL: /facilities/search?query={searchQuery}
+     *
+     * @param string $searchQuery
+     * @return object
+     */
+    public function search(string $searchQuery): object
+    {
+        $searchQuery = '%' . $searchQuery . '%';
+
+        $sql = "SELECT f.id, f.name, f.created_at, l.city, l.address, l.zip_code, l.country_code, l.phone_number, GROUP_CONCAT(t.name) AS tag_name
+                FROM facilities AS f
+                JOIN locations AS l ON f.location_id = l.id
+                LEFT JOIN facility_tags as ft ON f.id = ft.facility_id
+                LEFT JOIN tags AS t ON ft.tag_id = t.id
+                WHERE f.name LIKE ? OR t.name LIKE ? OR l.city LIKE ?
+                GROUP BY f.id, f.name, f.created_at, l.city, l.address, l.zip_code, l.country_code, l.phone_number";
+
+        $params = [$searchQuery, $searchQuery, $searchQuery];
+        $result = $this->db->executeQuery2($sql, $params);
+
+        if (empty($result)) {
+            throw new Exceptions\NotFound('Facility not found.');
+        }
+
+        $response['Facilities'] = $result;
+
+        $status = new Status\Ok($response);
+        $status->send();
+
+        return $status;
     }
 }
