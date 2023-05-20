@@ -21,11 +21,14 @@ class FacilityController extends BaseController
     {
         $data = $this->getRequestData();
 
+        $locationData = $data->location;
+        $locationId = $this->manageLocation((object)$locationData);
+
         $sql = "INSERT INTO facilities (name, created_at, location_id) VALUES (?, ?, ?)";
         $params = [
             $data->name ?? null,
             $data->created_at ?? null,
-            $data->location_id ?? null
+            $locationId
         ];
 
         $result = $this->db->executeQuery($sql, $params);
@@ -33,6 +36,8 @@ class FacilityController extends BaseController
         if ($result === 0) {
             throw new Exceptions\InternalServerError('Failed to create facility.');
         }
+
+        $this->handleTags($data->tags, $result);
 
         $status = new Status\Created(['Object created successfully' => $result]);
         $status->send();
@@ -118,11 +123,14 @@ class FacilityController extends BaseController
     {
         $data = $this->getRequestData();
 
+        $locationData = $data->location;
+        $locationId = $this->manageLocation((object)$locationData);
+
         $sql = "UPDATE facilities SET name = ?, created_at = ?, location_id = ? WHERE id = ?";
         $params = [
             $data->name ?? null,
             $data->created_at ?? null,
-            $data->location_id ?? null,
+            $locationId,
             $id
         ];
         $result = $this->db->executeQuery($sql, $params);
@@ -130,6 +138,8 @@ class FacilityController extends BaseController
         if ($result === 0) {
             throw new Exceptions\NotFound('Facility not found.');
         }
+
+        $this->handleTags($data->tags, $id);
 
         $status = new Status\Ok(['Facility updated successfully' => $result]);
         $status->send();
@@ -238,5 +248,149 @@ class FacilityController extends BaseController
         $status->send();
 
         return $status;
+    }
+
+    /**
+     * Create a new location or update existing and return the location ID.
+     *
+     * @param object $locationData
+     * @return int
+     */
+    private function manageLocation(object $locationData): int
+    {
+        $existingLocation = $this->getLocationId($locationData);
+
+        if ($existingLocation !== null) {
+            return $existingLocation;
+        }
+
+        $sql = "INSERT INTO locations (city, address, zip_code, country_code, phone_number)
+                    VALUES (?, ?, ?, ?, ?)
+                    ON DUPLICATE KEY UPDATE
+                    city = VALUES(city), address = VALUES(address), zip_code = VALUES(zip_code),
+                    country_code = VALUES(country_code), phone_number = VALUES(phone_number)";
+
+        $params = [
+            $locationData->city ?? null,
+            $locationData->address ?? null,
+            $locationData->zip_code ?? null,
+            $locationData->country_code ?? null,
+            $locationData->phone_number ?? null
+        ];
+
+        $result = $this->db->executeQuery($sql, $params);
+
+        if ($result === 0) {
+            throw new Exceptions\InternalServerError("Failed to create location.");
+        }
+
+        $locationId = $this->db->getLastInsertedId();
+
+        return $locationId;
+    }
+
+    /**
+     * Get the ID of an existing location if it exists.
+     *
+     * @param object $locationData
+     * @return int|null
+     */
+    private function getLocationId(object $locationData): ?int
+    {
+        $sql = "SELECT id FROM locations WHERE city = ? AND address = ? AND zip_code = ? AND country_code = ? AND phone_number = ?";
+
+        $params = [
+            $locationData->city ?? null,
+            $locationData->address ?? null,
+            $locationData->zip_code ?? null,
+            $locationData->country_code ?? null,
+            $locationData->phone_number ?? null
+        ];
+
+        $result = $this->db->executeQuery2($sql, $params);
+
+        if (!empty($result)) {
+            return $result[0]['id'];
+        }
+
+        return null;
+    }
+    /**
+     * Handle facility tags.
+     *
+     * @param array $tags
+     * @param int $facilityId
+     * @return void
+     */
+    private function handleTags(array $tags, int $facilityId): void
+    {
+        $this->deleteFacilityTags($facilityId);
+
+        foreach ($tags as $tagName) {
+            $tagId = $this->getTagId($tagName);
+
+            if ($tagId === null) {
+                $tagId = $this->createTag($tagName);
+            }
+
+            $this->addFacilityTag($facilityId, $tagId);
+        }
+    }
+
+    /**
+     * Delete all facility tags for a given facility ID.
+     *
+     * @param int $facilityId
+     * @return void
+     */
+    private function deleteFacilityTags(int $facilityId): void
+    {
+        $sql = "DELETE FROM facility_tags WHERE facility_id = ?";
+        $this->db->executeQuery($sql, [$facilityId]);
+    }
+
+    /**
+     * Get the tag ID for a given tag name.
+     *
+     * @param string $tagName
+     * @return int|null
+     */
+    private function getTagId(string $tagName): ?int
+    {
+        $sql = "SELECT id FROM tags WHERE name = ?";
+        $result = $this->db->executeQuery2($sql, [$tagName]);
+
+        if (!empty($result)) {
+            return $result[0]['id'];
+        }
+
+        return null;
+    }
+
+    /**
+     * Create a new tag and return its ID.
+     *
+     * @param string $tagName
+     * @return int
+     */
+    private function createTag(string $tagName): int
+    {
+        $sql = "INSERT INTO tags (name) VALUES (?)";
+        $this->db->executeQuery($sql, [$tagName]);
+
+        return $this->db->getLastInsertedId();
+    }
+
+    /**
+     * Add a facility tag by inserting the facility_id and tag_id into the facility_tags table.
+     *
+     * @param int $facilityId
+     * @param int $tagId
+     * @return void
+     */
+    private function addFacilityTag(int $facilityId, int $tagId): void
+    {
+        $sql = "INSERT INTO facility_tags (facility_id, tag_id) VALUES (?, ?)";
+        $this->db->executeQuery($sql, [$facilityId, $tagId]);
     }
 }
