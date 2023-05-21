@@ -3,7 +3,7 @@
 return [
     'db' => [
         'host' => 'localhost',
-        'database' => 'facility api',
+        'database' => 're',
         'username' => 'root',
         'password' => 'secret123',
     ],
