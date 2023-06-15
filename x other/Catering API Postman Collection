@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "1f272185-3c34-49b8-a12d-7d042d60bf6b",
 		"name": "DTT Back end assessment – Catering API",
-		"description": "# Catering API\n\n## Start by using /facilities\n\nThe Postman collection for the DTT backend assessment test: Catering API.\n\n## Error handling\n\nErrors are returned using standard HTTP error code syntax. In general, codes in the `2xx` range indicate success, codes in the `4xx` range indicate an error, and codes in the `5xx` range indicate an error with the servers.\n\n### HTTP status codes\n\n- `200` – **Ok**. Successful operation.\n- `201` – **Created**. Object succesfully created.\n- `400` – **The request was incorrect.**\n- `404` – **Not Found**. Object not found.\n- `500` – **Internal Server Error**. Something unexpected happened.\n    \n\n## Data format\n\nThe Catering API returns data in raw `JSON` format . See example:\n\n``` json\n{\n    \"Facility\": [\n        {\n            \"id\": 87,\n            \"name\": \"Schoool Facility\",\n            \"created_at\": \"2023-05-20 16:20:00\",\n            \"city\": \"Amsterdam\",\n            \"address\": \"Museumplein\",\n            \"zip_code\": \"1045 XX\",\n            \"country_code\": \"NL\",\n            \"phone_number\": \"0664762156\",\n            \"tag_name\": \"TEST,AMS,SCHOOL\"\n        }\n    ]\n}\n\n```",
+		"description": "# Catering API\n\n## Start by using /facilities\n\nThe Postman collection for the DTT backend assessment test: Catering API.\n\n## Error handling\n\nErrors are returned using standard HTTP error code syntax. In general, codes in the `2xx` range indicate success, codes in the `4xx` range indicate an error, and codes in the `5xx` range indicate an error with the servers.\n\n### HTTP status codes\n\n- `200` – **Ok**. Successful operation.\n- `201` – **Created**. Object succesfully created.\n- `400` – **The request was incorrect.**\n- `404` – **Not Found**. Object not found.\n- `500` – **Internal Server Error**. Something unexpected happened.\n    \n\n## Data format\n\nThe Catering API returns data in raw `JSON` format . See example:\n\n``` json\n    {\n        \"id\": 234,\n        \"name\": \"newupdate\",\n        \"created_at\": \"2023-06-15 16:20:00\",\n        \"city\": \"Chisinau\",\n        \"address\": \"Kiev\",\n        \"zip_code\": \"2023MD\",\n        \"country_code\": \"MD\",\n        \"phone_number\": \"0664562156\",\n        \"tag_name\": [\n            \"KIV\",\n            \"MD\"\n        ]\n    }\n\n```",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "27453808"
 	},
@@ -48,7 +48,7 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Fri, 09 Jun 2023 09:15:04 GMT"
+									"value": "Thu, 15 Jun 2023 09:37:20 GMT"
 								},
 								{
 									"key": "Server",
@@ -60,7 +60,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "1245"
+									"value": "1400"
 								},
 								{
 									"key": "Keep-Alive",
@@ -76,7 +76,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n    {\n        \"id\": 82,\n        \"name\": \"School Facility\",\n        \"created_at\": \"2023-05-20 16:20:00\",\n        \"city\": \"Amsterdam\",\n        \"address\": \"Rijkplaan\",\n        \"zip_code\": \"2045 LL\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0654762156\",\n        \"tag_name\": [\n            \"TEST\",\n            \"AMS\"\n        ]\n    },\n    {\n        \"id\": 83,\n        \"name\": \"Work Facility\",\n        \"created_at\": \"2023-05-20 16:20:00\",\n        \"city\": \"Haarlem\",\n        \"address\": \"Schoonzichtlaan\",\n        \"zip_code\": \"2015 CL\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0654762756\",\n        \"tag_name\": [\n            \"WORK\",\n            \"HAA\"\n        ]\n    },\n    {\n        \"id\": 84,\n        \"name\": \"Hospital Facility\",\n        \"created_at\": \"2023-05-20 16:20:00\",\n        \"city\": \"Amsterdam\",\n        \"address\": \"Rijkplaan\",\n        \"zip_code\": \"2045 LL\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0654762156\",\n        \"tag_name\": [\n            \"AMS\",\n            \"WORK\"\n        ]\n    },\n    {\n        \"id\": 85,\n        \"name\": \"Test Facility\",\n        \"created_at\": \"2023-05-20 16:20:00\",\n        \"city\": \"Amsterdam\",\n        \"address\": \"Rijkplaan\",\n        \"zip_code\": \"2045 LL\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0654762156\",\n        \"tag_name\": [\n            \"AMS\",\n            \"SCHOOL\"\n        ]\n    },\n    {\n        \"id\": 87,\n        \"name\": \"dre Facility\",\n        \"created_at\": \"2023-05-20 16:20:00\",\n        \"city\": \"Amsterdam\",\n        \"address\": \"Museumplein\",\n        \"zip_code\": \"1045 XX\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0664762156\",\n        \"tag_name\": [\n            \"TEST\",\n            \"AMS\",\n            \"SCHOOL\"\n        ]\n    },\n    {\n        \"id\": 89,\n        \"name\": \"Work Facility\",\n        \"created_at\": \"2023-05-20 16:20:00\",\n        \"city\": \"Haarlem\",\n        \"address\": \"Schoonzichtlaan\",\n        \"zip_code\": \"2015 CL\",\n        \"country_code\": \"AL\",\n        \"phone_number\": \"0654762756\",\n        \"tag_name\": [\n            \"WORK\"\n        ]\n    }\n]"
+							"body": "[\n    {\n        \"id\": 234,\n        \"name\": \"newupdate\",\n        \"created_at\": \"2023-06-15 16:20:00\",\n        \"city\": \"Chisinau\",\n        \"address\": \"Kiev\",\n        \"zip_code\": \"2023MD\",\n        \"country_code\": \"MD\",\n        \"phone_number\": \"0664562156\",\n        \"tag_name\": [\n            \"KIV\",\n            \"MD\"\n        ]\n    },\n    {\n        \"id\": 235,\n        \"name\": \"test_facility\",\n        \"created_at\": \"2023-06-14 12:21:00\",\n        \"city\": \"Haarlem\",\n        \"address\": \"Schoonzichtlaam\",\n        \"zip_code\": \"2015CV\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0664762156\",\n        \"tag_name\": [\n            \"HAA\",\n            \"NL\"\n        ]\n    },\n    {\n        \"id\": 236,\n        \"name\": \"work_facility\",\n        \"created_at\": \"2023-06-14 12:21:00\",\n        \"city\": \"Haarlem\",\n        \"address\": \"Bijdoorplein\",\n        \"zip_code\": \"2015CE\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0664562156\",\n        \"tag_name\": [\n            \"HAA\",\n            \"NL\"\n        ]\n    },\n    {\n        \"id\": 237,\n        \"name\": \"school_facility\",\n        \"created_at\": \"2023-06-14 12:21:00\",\n        \"city\": \"Amsterdam\",\n        \"address\": \"Randomplein\",\n        \"zip_code\": \"2385CT\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0664562156\",\n        \"tag_name\": [\n            \"NL\",\n            \"AMS\"\n        ]\n    },\n    {\n        \"id\": 238,\n        \"name\": \"hospital_facility\",\n        \"created_at\": \"2023-06-14 12:21:00\",\n        \"city\": \"Chisinau\",\n        \"address\": \"Kiev\",\n        \"zip_code\": \"2023MD\",\n        \"country_code\": \"MD\",\n        \"phone_number\": \"0664562156\",\n        \"tag_name\": [\n            \"MD\",\n            \"KIV\"\n        ]\n    },\n    {\n        \"id\": 240,\n        \"name\": \"acasdcility\",\n        \"created_at\": \"2023-06-10 12:20:00\",\n        \"city\": \"Haarlem\",\n        \"address\": \"Museumplein\",\n        \"zip_code\": \"1045 XX\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0664762156\",\n        \"tag_name\": [\n            \"HAA\"\n        ]\n    },\n    {\n        \"id\": 241,\n        \"name\": \"acasdcility\",\n        \"created_at\": \"2023-06-10 12:20:00\",\n        \"city\": \"Haarlem\",\n        \"address\": \"Museumplein\",\n        \"zip_code\": \"1045 XX\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0664762156\",\n        \"tag_name\": [\n            \"HAA\"\n        ]\n    }\n]"
 						}
 					]
 				},
@@ -86,13 +86,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/facility/159",
+							"raw": "{{baseUrl}}/facility/234",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"facility",
-								"159"
+								"234"
 							]
 						},
 						"description": "Returns a facility based on its ID."
@@ -104,13 +104,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/facility/87",
+									"raw": "{{baseUrl}}/facility/234",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"facility",
-										"87"
+										"234"
 									]
 								}
 							},
@@ -120,7 +120,7 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Fri, 09 Jun 2023 09:14:59 GMT"
+									"value": "Thu, 15 Jun 2023 09:38:12 GMT"
 								},
 								{
 									"key": "Server",
@@ -132,7 +132,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "215"
+									"value": "193"
 								},
 								{
 									"key": "Keep-Alive",
@@ -148,111 +148,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n    {\n        \"id\": 87,\n        \"name\": \"dre Facility\",\n        \"created_at\": \"2023-05-20 16:20:00\",\n        \"city\": \"Amsterdam\",\n        \"address\": \"Museumplein\",\n        \"zip_code\": \"1045 XX\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0664762156\",\n        \"tag_name\": [\n            \"TEST\",\n            \"AMS\",\n            \"SCHOOL\"\n        ]\n    }\n]"
-						}
-					]
-				},
-				{
-					"name": "Search facilities",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/facilities/search?tag=AMS",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"facilities",
-								"search"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "Hospital",
-									"disabled": true
-								},
-								{
-									"key": "tag",
-									"value": "AMS"
-								},
-								{
-									"key": "city",
-									"value": "Haarlem",
-									"disabled": true
-								}
-							]
-						},
-						"description": "Returns a list of all available facilities based on the search query.\n\nThe search query can be:\n\n1. A facility `name`\n2. A tag `name`\n3. A location `city`"
-					},
-					"response": [
-						{
-							"name": "/facilities/search/{query}",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{baseUrl}}/facilities/search?tag=AMS",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"facilities",
-										"search"
-									],
-									"query": [
-										{
-											"key": "name",
-											"value": "Hospital",
-											"disabled": true
-										},
-										{
-											"key": "tag",
-											"value": "AMS"
-										},
-										{
-											"key": "city",
-											"value": "Haarlem",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Date",
-									"value": "Fri, 09 Jun 2023 09:14:51 GMT"
-								},
-								{
-									"key": "Server",
-									"value": "Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.2.4"
-								},
-								{
-									"key": "X-Powered-By",
-									"value": "PHP/8.2.4"
-								},
-								{
-									"key": "Content-Length",
-									"value": "796"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5, max=100"
-								},
-								{
-									"key": "Connection",
-									"value": "Keep-Alive"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "[\n    {\n        \"id\": 82,\n        \"name\": \"School Facility\",\n        \"created_at\": \"2023-05-20 16:20:00\",\n        \"city\": \"Amsterdam\",\n        \"address\": \"Rijkplaan\",\n        \"zip_code\": \"2045 LL\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0654762156\",\n        \"tag_name\": [\n            \"AMS\"\n        ]\n    },\n    {\n        \"id\": 84,\n        \"name\": \"Hospital Facility\",\n        \"created_at\": \"2023-05-20 16:20:00\",\n        \"city\": \"Amsterdam\",\n        \"address\": \"Rijkplaan\",\n        \"zip_code\": \"2045 LL\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0654762156\",\n        \"tag_name\": [\n            \"AMS\"\n        ]\n    },\n    {\n        \"id\": 85,\n        \"name\": \"Test Facility\",\n        \"created_at\": \"2023-05-20 16:20:00\",\n        \"city\": \"Amsterdam\",\n        \"address\": \"Rijkplaan\",\n        \"zip_code\": \"2045 LL\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0654762156\",\n        \"tag_name\": [\n            \"AMS\"\n        ]\n    },\n    {\n        \"id\": 87,\n        \"name\": \"dre Facility\",\n        \"created_at\": \"2023-05-20 16:20:00\",\n        \"city\": \"Amsterdam\",\n        \"address\": \"Museumplein\",\n        \"zip_code\": \"1045 XX\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0664762156\",\n        \"tag_name\": [\n            \"AMS\"\n        ]\n    }\n]"
+							"body": "[\n    {\n        \"id\": 234,\n        \"name\": \"newupdate\",\n        \"created_at\": \"2023-06-15 16:20:00\",\n        \"city\": \"Chisinau\",\n        \"address\": \"Kiev\",\n        \"zip_code\": \"2023MD\",\n        \"country_code\": \"MD\",\n        \"phone_number\": \"0664562156\",\n        \"tag_name\": [\n            \"KIV\",\n            \"MD\"\n        ]\n    }\n]"
 						}
 					]
 				},
@@ -262,7 +158,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/facilities?page=1&perPage=2",
+							"raw": "{{baseUrl}}/facilities?page=1&perPage=5",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -276,7 +172,7 @@
 								},
 								{
 									"key": "perPage",
-									"value": "2"
+									"value": "5"
 								}
 							]
 						},
@@ -289,7 +185,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/facilities?page=1&perPage=2",
+									"raw": "{{baseUrl}}/facilities?page=1&perPage=5",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -303,7 +199,7 @@
 										},
 										{
 											"key": "perPage",
-											"value": "2"
+											"value": "5"
 										}
 									]
 								}
@@ -314,7 +210,7 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Fri, 09 Jun 2023 09:18:24 GMT"
+									"value": "Thu, 15 Jun 2023 09:38:17 GMT"
 								},
 								{
 									"key": "Server",
@@ -326,7 +222,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "415"
+									"value": "1008"
 								},
 								{
 									"key": "Keep-Alive",
@@ -342,7 +238,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n    {\n        \"id\": 82,\n        \"name\": \"School Facility\",\n        \"created_at\": \"2023-05-20 16:20:00\",\n        \"city\": \"Amsterdam\",\n        \"address\": \"Rijkplaan\",\n        \"zip_code\": \"2045 LL\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0654762156\",\n        \"tag_name\": [\n            \"TEST\",\n            \"AMS\"\n        ]\n    },\n    {\n        \"id\": 83,\n        \"name\": \"Work Facility\",\n        \"created_at\": \"2023-05-20 16:20:00\",\n        \"city\": \"Haarlem\",\n        \"address\": \"Schoonzichtlaan\",\n        \"zip_code\": \"2015 CL\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0654762756\",\n        \"tag_name\": [\n            \"WORK\",\n            \"HAA\"\n        ]\n    }\n]"
+							"body": "[\n    {\n        \"id\": 234,\n        \"name\": \"newupdate\",\n        \"created_at\": \"2023-06-15 16:20:00\",\n        \"city\": \"Chisinau\",\n        \"address\": \"Kiev\",\n        \"zip_code\": \"2023MD\",\n        \"country_code\": \"MD\",\n        \"phone_number\": \"0664562156\",\n        \"tag_name\": [\n            \"KIV\",\n            \"MD\"\n        ]\n    },\n    {\n        \"id\": 235,\n        \"name\": \"test_facility\",\n        \"created_at\": \"2023-06-14 12:21:00\",\n        \"city\": \"Haarlem\",\n        \"address\": \"Schoonzichtlaam\",\n        \"zip_code\": \"2015CV\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0664762156\",\n        \"tag_name\": [\n            \"HAA\",\n            \"NL\"\n        ]\n    },\n    {\n        \"id\": 236,\n        \"name\": \"work_facility\",\n        \"created_at\": \"2023-06-14 12:21:00\",\n        \"city\": \"Haarlem\",\n        \"address\": \"Bijdoorplein\",\n        \"zip_code\": \"2015CE\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0664562156\",\n        \"tag_name\": [\n            \"HAA\",\n            \"NL\"\n        ]\n    },\n    {\n        \"id\": 237,\n        \"name\": \"school_facility\",\n        \"created_at\": \"2023-06-14 12:21:00\",\n        \"city\": \"Amsterdam\",\n        \"address\": \"Randomplein\",\n        \"zip_code\": \"2385CT\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0664562156\",\n        \"tag_name\": [\n            \"NL\",\n            \"AMS\"\n        ]\n    },\n    {\n        \"id\": 238,\n        \"name\": \"hospital_facility\",\n        \"created_at\": \"2023-06-14 12:21:00\",\n        \"city\": \"Chisinau\",\n        \"address\": \"Kiev\",\n        \"zip_code\": \"2023MD\",\n        \"country_code\": \"MD\",\n        \"phone_number\": \"0664562156\",\n        \"tag_name\": [\n            \"MD\",\n            \"KIV\"\n        ]\n    }\n]"
 						}
 					]
 				}
@@ -350,7 +246,7 @@
 			"description": "All the GET requests are under this directory"
 		},
 		{
-			"name": "Create facilities",
+			"name": "Add facilities",
 			"item": [
 				{
 					"name": "Create a facility",
@@ -359,7 +255,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"ac Facility\",\r\n  \"created_at\": \"2023-06-10 12:20:00\",\r\n  \"location\": {\r\n    \"city\": \"Haarlem\",\r\n    \"address\": \"Museumplein\",\r\n    \"zip_code\": \"1045 XX\",\r\n    \"country_code\": \"NL\",\r\n    \"phone_number\": \"0664762156\"\r\n  },\r\n  \"tags\": []\r\n}",
+							"raw": "{\r\n    \"name\": \"hospital_facility\",\r\n    \"created_at\": \"2023-06-14 12:21:00\",\r\n    \"location\": {\r\n        \"city\": \"Chisinau\",\r\n        \"address\": \"Kiev\",\r\n        \"zip_code\": \"2023MD\",\r\n        \"country_code\": \"MD\",\r\n        \"phone_number\": \"0664562156\"\r\n    },\r\n     \"tags\": [\"KIV\", \"HOS\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -385,7 +281,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"name\": \"ac Facility\",\r\n  \"created_at\": \"2023-06-10 12:20:00\",\r\n  \"location\": {\r\n    \"city\": \"Haarlem\",\r\n    \"address\": \"Museumplein\",\r\n    \"zip_code\": \"1045 XX\",\r\n    \"country_code\": \"NL\",\r\n    \"phone_number\": \"0664762156\"\r\n  },\r\n  \"tags\": []\r\n}",
+									"raw": "{\r\n    \"name\": \"hospital_facility\",\r\n    \"created_at\": \"2023-06-14 12:21:00\",\r\n    \"location\": {\r\n        \"city\": \"Chisinau\",\r\n        \"address\": \"Kiev\",\r\n        \"zip_code\": \"2023MD\",\r\n        \"country_code\": \"MD\",\r\n        \"phone_number\": \"0664562156\"\r\n    },\r\n     \"tags\": [\"KIV\", \"HOS\"]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -408,7 +304,7 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Fri, 09 Jun 2023 09:21:26 GMT"
+									"value": "Thu, 15 Jun 2023 09:38:58 GMT"
 								},
 								{
 									"key": "Server",
@@ -420,7 +316,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "469"
+									"value": "206"
 								},
 								{
 									"key": "Keep-Alive",
@@ -436,7 +332,97 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n    {\n        \"id\": 160,\n        \"name\": \"ac Facility\",\n        \"created_at\": \"2023-06-10 12:20:00\",\n        \"city\": \"Haarlem\",\n        \"address\": \"Museumplein\",\n        \"zip_code\": \"1045 XX\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0664762156\",\n        \"tag_name\": [\n            \"\"\n        ]\n    }\n]"
+							"body": "{\n    \"0\": {\n        \"id\": 242,\n        \"name\": \"hospital_facility\",\n        \"created_at\": \"2023-06-14 12:21:00\",\n        \"city\": \"Chisinau\",\n        \"address\": \"Kiev\",\n        \"zip_code\": \"2023MD\",\n        \"country_code\": \"MD\",\n        \"phone_number\": \"0664562156\",\n        \"tag_name\": [\n            \"KIV\",\n            \"HOS\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Search facilities",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"faci\",\r\n  \"city\": \"Haarlem\",\r\n  \"tag\": \"NL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/facilities/search",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facilities",
+								"search"
+							]
+						},
+						"description": "Returns a list of facilities based on the search query (body).\n\nThe request body can be none, raw, form-data or x-form-www-urlencoded. Response body is in JSON format. Search queries included in body:\n\n- `facility-name` - string - Optional\n- `tag-name`\\- string - Optional\n- `location-city` - string - Optional"
+					},
+					"response": [
+						{
+							"name": "Search facilities",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"faci\",\r\n  \"city\": \"Haarlem\",\r\n  \"tag\": \"NL\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/facilities/search",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"facilities",
+										"search"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jun 2023 09:39:39 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.2.4"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "398"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 235,\n        \"name\": \"test_facility\",\n        \"created_at\": \"2023-06-14 12:21:00\",\n        \"city\": \"Haarlem\",\n        \"address\": \"Schoonzichtlaam\",\n        \"zip_code\": \"2015CV\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0664762156\",\n        \"tag_name\": [\n            \"NL\"\n        ]\n    },\n    {\n        \"id\": 236,\n        \"name\": \"work_facility\",\n        \"created_at\": \"2023-06-14 12:21:00\",\n        \"city\": \"Haarlem\",\n        \"address\": \"Bijdoorplein\",\n        \"zip_code\": \"2015CE\",\n        \"country_code\": \"NL\",\n        \"phone_number\": \"0664562156\",\n        \"tag_name\": [\n            \"NL\"\n        ]\n    }\n]"
 						}
 					]
 				}
@@ -453,7 +439,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"dre Facility\",\r\n  \"created_at\": \"2023-05-20 16:20:00\",\r\n  \"location\": {\r\n    \"city\": \"Amsterdam\",\r\n    \"address\": \"Museumplein\",\r\n    \"zip_code\": \"1045 XX\",\r\n    \"country_code\": \"NL\",\r\n    \"phone_number\": \"0664762156\"\r\n  },\r\n  \"tags\": [\"AMS\", \"SCHOOL\", \"TEST\"]\r\n}",
+							"raw": "{\r\n    \"name\": \"new_update\",\r\n    \"created_at\": \"2023-06-15 16:20:00\",\r\n    \"location\": {\r\n        \"city\": \"Chisinau\",\r\n        \"address\": \"Kiev\",\r\n        \"zip_code\": \"2023MD\",\r\n        \"country_code\": \"MD\",\r\n        \"phone_number\": \"0664562156\"\r\n    },\r\n    \"tags\": [\"KIV\", \"MD\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -461,13 +447,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/facility/87",
+							"raw": "{{baseUrl}}/facility/234",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"facility",
-								"87"
+								"234"
 							]
 						},
 						"description": "Allows you to update a facility based on its ID.\n\nIf the location provided doesn't exist, it will be added to database, otherwise the existing one will be used.\n\nThe request body needs to be in JSON format and include the following properties:\n\n- `name` - string - Required\n- `created_at` - timestamp - Required\n- `location` - object - Required\n- `tags` - object"
@@ -480,7 +466,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"name\": \"hehe Facility\",\r\n  \"created_at\": \"2023-05-20 16:20:00\",\r\n  \"location\": {\r\n    \"city\": \"Amsterdam\",\r\n    \"address\": \"Museumplein\",\r\n    \"zip_code\": \"1045 XX\",\r\n    \"country_code\": \"NL\",\r\n    \"phone_number\": \"0664762156\"\r\n  },\r\n  \"tags\": [\"AMS\", \"SCHOOL\", \"TEST\"]\r\n}",
+									"raw": "{\r\n    \"name\": \"new_update\",\r\n    \"created_at\": \"2023-06-15 16:20:00\",\r\n    \"location\": {\r\n        \"city\": \"Chisinau\",\r\n        \"address\": \"Kiev\",\r\n        \"zip_code\": \"2023MD\",\r\n        \"country_code\": \"MD\",\r\n        \"phone_number\": \"0664562156\"\r\n    },\r\n    \"tags\": [\"KIV\", \"MD\"]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -488,60 +474,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/facility/158",
+									"raw": "{{baseUrl}}/facility/234",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"facility",
-										"158"
-									]
-								}
-							},
-							"_postman_previewlanguage": null,
-							"header": null,
-							"cookie": [],
-							"body": null
-						}
-					]
-				}
-			],
-			"description": "All the PUT requests are under this directory"
-		},
-		{
-			"name": "Delete facilities",
-			"item": [
-				{
-					"name": "Delete facility",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/facility/156",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"facility",
-								"156"
-							]
-						},
-						"description": "Allows you to delete a facility based on its ID.\n\nThe request body needs to be empty.\n\nReturns true if operation was successful."
-					},
-					"response": [
-						{
-							"name": "Delete facility",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{baseUrl}}/facility/156",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"facility",
-										"156"
+										"234"
 									]
 								}
 							},
@@ -551,7 +490,7 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Fri, 09 Jun 2023 09:21:47 GMT"
+									"value": "Thu, 15 Jun 2023 09:40:05 GMT"
 								},
 								{
 									"key": "Server",
@@ -563,7 +502,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "38"
+									"value": "194"
 								},
 								{
 									"key": "Keep-Alive",
@@ -579,7 +518,129 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"Facility deleted successfully\": true\n}"
+							"body": "[\n    {\n        \"id\": 234,\n        \"name\": \"new_update\",\n        \"created_at\": \"2023-06-15 16:20:00\",\n        \"city\": \"Chisinau\",\n        \"address\": \"Kiev\",\n        \"zip_code\": \"2023MD\",\n        \"country_code\": \"MD\",\n        \"phone_number\": \"0664562156\",\n        \"tag_name\": [\n            \"KIV\",\n            \"MD\"\n        ]\n    }\n]"
+						}
+					]
+				}
+			],
+			"description": "All the PUT requests are under this directory"
+		},
+		{
+			"name": "Delete facilities",
+			"item": [
+				{
+					"name": "Delete facility",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/facility/243",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facility",
+								"243"
+							]
+						},
+						"description": "Allows you to delete a facility based on its ID.\n\nThe request body needs to be empty.\n\nReturns true if operation was successful."
+					},
+					"response": [
+						{
+							"name": "Delete facility",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/facility/243",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"facility",
+										"243"
+									]
+								}
+							},
+							"status": "NoContent",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jun 2023 09:40:35 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.2.4"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Delete facility",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/facility/243",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"facility",
+										"243"
+									]
+								}
+							},
+							"status": "Not found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jun 2023 09:40:42 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.2.4"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Content-Length",
+									"value": "21"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "\"Facility_not_found.\""
 						}
 					]
 				}
